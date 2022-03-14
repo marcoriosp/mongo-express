@@ -21,7 +21,7 @@ EXPOSE 8081
 
 # override some config defaults with values that will work better for docker
 ENV ME_CONFIG_EDITORTHEME="default" \
-    ME_CONFIG_MONGODB_URL="mongodb://dirsal_mdb001:<*w22<IKb^.JxCX@cluster1.db.dirsal.com:27017/?authSource=dirsal_artistData&authMechanism=SCRAM-SHA-256&directConnection=true&ssl=false" \
+    ME_CONFIG_MONGODB_URL="" \
     ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
     ME_CONFIG_BASICAUTH_USERNAME="" \
     ME_CONFIG_BASICAUTH_PASSWORD="" \
