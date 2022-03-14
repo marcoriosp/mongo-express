@@ -1,7 +1,7 @@
 FROM node:12-slim
 
 # grab tini for signal processing and zombie killing
-ENV TINI_VERSION 0.9.0
+ENV TINI_VERSION 0.19.0
 RUN set -x \
 	&& apt-get update && apt-get install -y ca-certificates curl \
 		--no-install-recommends \
@@ -9,7 +9,7 @@ RUN set -x \
 	&& curl -fSL "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini" -o /usr/local/bin/tini \
 	&& curl -fSL "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini.asc" -o /usr/local/bin/tini.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
+	&& gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
 	&& gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
 	&& chmod +x /usr/local/bin/tini \
@@ -21,7 +21,7 @@ EXPOSE 8081
 
 # override some config defaults with values that will work better for docker
 ENV ME_CONFIG_EDITORTHEME="default" \
-    ME_CONFIG_MONGODB_URL="mongodb://mongo:27017" \
+    ME_CONFIG_MONGODB_URL="mongodb://dirsal_mdb001:<*w22<IKb^.JxCX@cluster1.db.dirsal.com:27017/?authSource=dirsal_artistData&authMechanism=SCRAM-SHA-256&directConnection=true&ssl=false" \
     ME_CONFIG_MONGODB_ENABLE_ADMIN="true" \
     ME_CONFIG_BASICAUTH_USERNAME="" \
     ME_CONFIG_BASICAUTH_PASSWORD="" \
